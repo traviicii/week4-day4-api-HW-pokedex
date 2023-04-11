@@ -50,15 +50,11 @@ def pokeDex():
                 print(f"- HP: {data['stats'][0]['base_stat']}")
 
                 imageurl = data['sprites']['front_shiny'] #gets image url
-                image = r.get(imageurl, stream = True)  #makes a request for the sppecific image
-                with open(data['name'], 'wb') as f: 
-                    shutil.copyfileobj(image.raw, f)    #saves image as a binary file with pokemon name as file name
-
-                poke_art = magic.from_image(data['name'])   #creates and prints image to terminal
-                poke_art.to_terminal(
-                    columns = 100,
-                    width_ratio = 2.2
-                )
+                # image = r.get(imageurl, stream = True)  #makes a request for the sppecific image
+                # with open(data['name'], 'wb') as f: 
+                #     shutil.copyfileobj(image.raw, f)    #saves image as a binary file with pokemon name as file name
+                poke_art = magic.from_url(imageurl)   #creates and prints image to terminal
+                poke_art.to_terminal()
 
                 more = input("Would you like to look up another pokemon? (y/n) or press Enter: ")
                 if more.lower() == 'n':
